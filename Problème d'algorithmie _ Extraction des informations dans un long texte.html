@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+
+<style id="webmakerstyle">
+
+</style>
+</head>
+<body>
+
+
+<script>
+let phrase = "Bonjour tout le monde,je suis Christian Lisangola,développeur logiciels à Kinshasa Digital.Mon numéro de téléphone est le +243840964176 qui un numéro vodacom,et mon adresse email privé est le christian.lisangola@gmail.com. Par le passé j'ai eu à utiliser d'autres numéros de téléphones à l'instar d'un numéro Airtel qui fut le +243971151294 mais qui ne passe plus je suppose et aussi un numéro Tigo,le +243895602911. Ici à Kinshasa Digital,j'utilise une adresse mail d'entreprise qui est le christian@kinshasadigital.com."
+
+phrase = phrase.split(/[ ,]/)
+
+
+//Function pour supprimer le point
+const supprimerLePoint = (tableau)=>{
+    for(let i = 0; i < tableau.length; i++){
+        if(tableau[i].endsWith('.')){
+            tableau[i] = tableau[i].slice(0,tableau[i].length-1);      
+        }
+    }
+};
+
+
+
+
+// // 1. Nombre et liste mail
+let adresseMail = phrase.filter((mail)=>{
+  return mail.includes('@')
+})
+supprimerLePoint(adresseMail)
+console.log( "TOTAL : "+adresseMail.length +" | "+ adresseMail)
+
+// //2. Nombre de Num Telelphone
+
+let numTel = phrase.filter((tel)=>{
+  return tel.includes('+243')
+})
+supprimerLePoint(numTel)
+console.log("TOTAL : "+numTel.length +" | "+ numTel)
+
+// // 3. Num Vodacom
+let numVoda = phrase.filter((tel)=>{
+  return tel.includes('+24381')
+})
+console.log("TOTAL : "+numVoda.length +" | "+ numVoda)
+
+// //4 Num Tigo
+let numTigo = phrase.filter((tel)=>{
+  return tel.includes('+24384')
+})
+console.log("TOTAL : "+numTigo.length +" | "+ numTigo)
+
+// //5 Num orange
+let numOrange = phrase.filter((tel)=>{
+  return tel.includes('+24389')
+})
+supprimerLePoint(numOrange)
+console.log("TOTAL : "+numOrange.length +" | "+ numOrange)
+
+// //6 Mail prive
+let mailPrive = phrase.filter((mail)=>{
+  if(mail.includes("@gmail") || mail.includes("@yahoo") || mail.includes("@hotmail")){
+    return mail
+  }
+})
+console.log("Mail Privé :"+ mailPrive)
+
+// //7 Mail pro
+let mailPro = phrase.filter((mail)=>{
+  if(mail.includes("@") && !mail.includes("@gmail") && !mail.includes("@yahoo")){
+    return mail
+  }
+})
+console.log("Mail Pro : "+mailPro)
+
+
+
+//8 Filtre mot
+
+var listeMotsRestreints = ['le', 'la', 'les', 'des', 'du', 'un', 'une', 'Bonjour', '+243', '@', 'je', 'tu', 'il', 'elle', 'nous', 'vous', 'elles', 'ils', 'à', 'qui'];
+
+
+for (motRestreint of listeMotsRestreints) {
+    phrase = phrase.filter(mot => !(mot.includes(motRestreint)));
+}
+console.log(phrase + phrase.length)
+
+
+
+
+//# sourceURL=userscript.js
+</script>
+</body>
+</html>
